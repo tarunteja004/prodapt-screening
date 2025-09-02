@@ -32,7 +32,8 @@ class DemoControllerTest {
     private MockMvc mockMvc;
 
     // add your test cases here
-    
+
+    // Test normal case with > 2 characters
     @Test
     void testRemoveBasicWord() throws Exception {
         mockMvc.perform(get("/remove")
@@ -52,6 +53,7 @@ class DemoControllerTest {
                 .andExpect(content().string("erso"));
     }
 
+    // Test string with exactly 2 characters
     @Test
     void testRemoveTwoChars() throws Exception {
         mockMvc.perform(get("/remove")
@@ -60,6 +62,7 @@ class DemoControllerTest {
                 .andExpect(content().string(""));
     }
 
+    // Test string with exactly 3 characters
     @Test
     void testRemoveThreeChars() throws Exception {
         mockMvc.perform(get("/remove")
@@ -68,6 +71,7 @@ class DemoControllerTest {
                 .andExpect(content().string("y"));
     }
 
+    // Test string with numbers and special characters
     @Test
     void testRemoveSpecialChars() throws Exception {
         mockMvc.perform(get("/remove")
@@ -76,6 +80,7 @@ class DemoControllerTest {
                 .andExpect(content().string("23%qwerty"));
     }
 
+    // Test string with only 1 character (invalid)
     @Test
     void testRemoveOneChar() throws Exception {
         mockMvc.perform(get("/remove")
@@ -83,6 +88,7 @@ class DemoControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    // Test empty input (invalid)
     @Test
     void testRemoveEmptyString() throws Exception {
         mockMvc.perform(get("/remove")
@@ -90,3 +96,4 @@ class DemoControllerTest {
                 .andExpect(status().isBadRequest());
     }
 }
+
